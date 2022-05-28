@@ -1,7 +1,19 @@
 <template>
   <div class="container">
     <div class="box-container">
-      <div class="single-box" v-for="i in pageNumber" :key="i"></div>
+      <div class="single-box" v-for="(info, i) in infos" :key="i">
+        <div class="paragraph">
+          <div class="title">
+            {{ info.title }}
+          </div>
+          <div class="text">
+            {{ info.text }}
+          </div>
+        </div>
+        <div class="image">
+          <img :src="info.image" alt="" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -9,7 +21,18 @@
 export default {
   data() {
     return {
-      pageNumber: 3,
+      infos: [
+        {
+          title: "titolo2",
+          text: "macchine elettriche storia funzioni caratteristiche vantaggi/svantaggi ecc",
+          image: "src",
+        },
+        {
+          title: "titolo3",
+          text: "stazioni di ricarica funzionamento costi velocita caratteristiche  ",
+          image: "src",
+        },
+      ],
     };
   },
 };
@@ -17,27 +40,59 @@ export default {
 <style lang="css">
 .container {
   width: 100%;
-  height: 100%;
-  background-color: black;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: scroll;
 }
 
 .box-container {
-  margin-top: 20vh;
-  width: 65%;
-  height: 100%;
+  width: 70%;
+  min-height: 100%;
   background: blue;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .single-box {
   width: 100%;
-  max-height: 35%;
   background-color: white;
   border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.single-box:nth-child(even) > .paragraph {
+  order: 2;
+}
+
+.paragraph {
+  width: 67%;
+  height: 100%;
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title{
+  height: 20%;
+}
+.text{
+  height: 80%;
+}
+
+.image {
+  width: 33%;
+  height: 100%;
+  background-color: yellow;
+}
+
+@media screen and (max-width: 800px){
+  .box-container{
+    width: 100%;
+  }
 }
 </style>
